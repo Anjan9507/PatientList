@@ -70,17 +70,17 @@ def view_all_patients():
 
 
 def view_patient_by_id():
+    patients = load_patients()
+    if not patients:
+        print("No Patients to View")
+        return
+    
     while True:
         try:
             patient_id = int(input("Enter Patient ID you want to View: "))
             break
         except ValueError:
             print("Invalid ID. Try Again")
-    
-    patients = load_patients()
-    if not patients:
-        print("No Patients to View")
-        return
     
     matches = [p for p in patients if p['id'] == patient_id]
     if not matches:
@@ -93,17 +93,17 @@ def view_patient_by_id():
 
 
 def remove_patient():
+    patients = load_patients()
+    if not patients:
+        print("No Patients to Remove")
+        return
+    
     while True:
         try:
             patient_id = int(input("Enter Patient ID you want to Remove: "))
             break
         except ValueError:
             print("Invalid ID. Try Again")
-
-    patients = load_patients()
-    if not patients:
-        print("No Patients to Remove")
-        return
 
     matches = [p for p in patients if p['id'] == patient_id]
     if not matches:
